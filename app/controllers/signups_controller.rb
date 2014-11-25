@@ -10,6 +10,7 @@ class SignupsController < ApplicationController
     @user = build_user
 
     if @user.save
+      self.current_user = @user
       redirect_to lessons_path
     else
       render :action => :new
