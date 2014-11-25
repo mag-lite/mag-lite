@@ -1,0 +1,58 @@
+<% provide :title, 'Manage Users' %>
+
+<div class="page-header">
+  <h1><%= yield :title %></h1>
+</div>
+
+<% if @users.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Role</th>
+        <th>Created</th>
+        <th>Scores</th>
+        <th>Heard From</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td>
+            <strong><%= user.email %></strong>
+            <br>
+            <small>
+              <% if user.name.blank? %>
+                <em>Anonymous</em>
+              <% else %>
+                <%= user.name %>
+              <% end %>
+            </small>
+          </td>
+          <td>
+            <%= content_tag :span, :class => ['label', (if user.group.admin? then 'label-info' else 'label-default' end)] do %>
+              <%= user.group.slug %>
+            <% end %>
+          </td>
+          <td>
+            <%=l user.created_at.to_date %>
+            <br>
+            <small><%= time_ago_in_words user.created_at %> ago</small>
+          </td>
+          <td>
+            Target: <%= user.target_score ? user.target_score : '?' %>
+            <br>
+            <small>Actual: <%= user.actual_score ? user.actual_score : '?' %></small>
+          </td>
+          <td>
+            <%= user.heard_from %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>
+    There aren't any users yet.
+  </p>
+<% end %>

@@ -1,0 +1,19 @@
+<% provide :title, "Lessons" %>
+
+<div class="page-header">
+  <h1><%= yield :title %></h1>
+</div>
+
+<% if @lessons.any? %>
+  <div class="row">
+    <% @lessons.each do |lesson| %>
+      <div class="col-md-4">
+        <%= render :partial => 'lesson_mini', :object => lesson %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>
+    There aren't any lessons for you to study...that's not very helpful at all :(
+  </p>
+<% end %>

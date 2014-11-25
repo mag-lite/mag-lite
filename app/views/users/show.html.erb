@@ -1,0 +1,33 @@
+<%= provide :title, 'Profile' %>
+
+<div class="page-header">
+  <h1><%= yield :title %></h1>
+</div>
+
+<h5>Name</h5>
+<p>
+  <% if @user.name.blank? %>
+    <em>Unknown</em>
+  <% else %>
+    <%= @user.name %>
+  <% end %>
+</p>
+
+<h5>Target Score</h5>
+<p><%= @user.target_score || '?' %></p>
+
+<h5>Actual Score</h5>
+<p><%= @user.actual_score || '?' %></p>
+
+<h5>Where did you hear about Mag-Lite?</h5>
+<p>
+  <% if @user.heard_from.blank? %>
+    <em>Unknown</em>
+  <% else %>
+    <%= @user.heard_from %>
+  <% end %>
+</p>
+
+<p>
+  <%= link_to 'Edit Profile', edit_user_path, class: 'btn btn-success' %>
+</p>

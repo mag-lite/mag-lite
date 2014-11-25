@@ -1,0 +1,24 @@
+<%= provide :title, @lesson.name %>
+
+<div class="page-header">
+  <h1><%= yield :title %></h1>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <%= render :partial => 'lesson', :object => @lesson %>
+  </div>
+  <div class="col-md-4">
+    <% if (next_lesson = @lesson.next_lesson(collection)) %>
+      <h3>Next Lesson</h3>
+      <%= render :partial => 'lesson_mini', :object => next_lesson %>
+    <% else %>
+      <p>
+        <em>This is the last lesson</em>
+      </p>
+    <% end %>
+    <p>
+      <%= link_to "Return to Lessons", lessons_path, :class => 'btn btn-default' %>
+    </p>
+  </div>
+</div>

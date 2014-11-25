@@ -1,0 +1,41 @@
+<% if @lesson.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+    <strong>Oops!</strong>
+    <%= @lesson.errors.full_messages.to_sentence %>
+  </div>
+<% end %>
+
+<%= form_for [:admin, @lesson] do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, :class => "form-control", :rows => 3 %>
+  </div>
+  <div class="form-group">
+    <%= f.label :display_order %>
+    <%= f.number_field :display_order, :class => "form-control" %>
+    <div class="help-block">
+      Lessons are sorted in ascending order
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="checkbox">
+      <%= f.label :published do %>
+        <%= f.check_box :published %> Published
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <% if @lesson.new_record? %>
+      <%= f.submit "Create Lesson", :class => 'btn btn-success' %>
+      <%= link_to 'Cancel', admin_lessons_path, :class => 'btn btn-link' %>
+    <% else %>
+      <%= f.submit "Update Lesson", :class => 'btn btn-success' %>
+      <%= link_to 'Cancel', admin_lesson_path(@lesson), :class => 'btn btn-link' %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+<% provide :title, "Admin Dashboard" %>
+
+<div class="page-header">
+  <h1><%= yield :title %></h1>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <p><%= link_to 'Manage Lessons', admin_lessons_path %></p>
+  </div>
+
+  <div class="col-md-6">
+    <p><%= link_to 'Manage Users', admin_users_path %></p>
+  </div>
+</div>

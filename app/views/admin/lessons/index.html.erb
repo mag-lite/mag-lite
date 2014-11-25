@@ -1,0 +1,54 @@
+<% provide :title, 'Manage Lessons' %>
+
+<div class="page-header">
+  <h1><%= yield :title %></h1>
+</div>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Lesson</th>
+      <th>Order</th>
+      <th>Status</th>
+      <th>Created</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @lessons.any? %>
+      <% @lessons.each do |lesson| %>
+        <tr>
+          <td>
+            <strong><%= link_to lesson.name, admin_lesson_path(lesson) %></strong>
+            <br>
+            <small><%= truncate lesson.description, :length => 60 %></small>
+          </td>
+          <td>
+            <%= lesson.display_order %>
+          </td>
+          <td>
+            <%= lesson_status_label(lesson) %>
+          </td>
+          <td>
+            <%=l lesson.created_at.to_date %>
+            <br>
+            <small><%= time_ago_in_words lesson.created_at %> ago</small>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="4">
+          <em>There aren't any lessons uploaded yet</em>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="4">
+        <%= link_to 'New Lesson', new_admin_lesson_path, :class => 'btn btn-success' %>
+      </td>
+    </tr>
+  </tfoot>
+</table>

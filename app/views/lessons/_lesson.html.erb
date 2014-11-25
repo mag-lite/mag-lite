@@ -1,0 +1,7 @@
+<% if lesson.current_video %>
+  <%= videojs_rails sources: {mp4: lesson.current_video.url}, width: 600, height: 450 %>
+<% else %>
+  <p>This lesson doesn't have a video.</p>
+<% end %>
+
+<p><%= lesson.description %></p>

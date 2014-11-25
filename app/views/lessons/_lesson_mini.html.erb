@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <%= link_to lesson_mini.name, lesson_path(lesson_mini) %>
+      <small><%= lesson_mini.current_video.human_length %></small>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <%= truncate lesson_mini.description, :length => 60 %>
+  </div>
+  <div class="panel-footer">
+    <%= link_to 'View Lesson', lesson_path(lesson_mini), :class => 'btn btn-sm btn-success' %>
+  </div>
+</div>
