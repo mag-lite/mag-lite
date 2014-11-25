@@ -4,6 +4,8 @@ Mag-Lite
 This is a simple Rails application for managing a course with lessons and user
 accounts.
 
+![lessons page](//raw.githubusercontent.com/mag-lite/mag-lite/master/doc/lessons.png)
+
 ## Setup
 
 ```
